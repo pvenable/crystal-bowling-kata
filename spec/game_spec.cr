@@ -6,18 +6,26 @@ describe Game do
   let(:game) { Game.new }
 
   it "scores a gutter game" do
-    roll_many(game, 0, 20)
+    roll_many(0, 20)
 
     game.score.must_equal 0
   end
 
   it "scores open frames" do
-    roll_many(game, 1, 20)
+    roll_many(1, 20)
 
     game.score.must_equal 20
   end
 
-  def roll_many(game, pins, times)
+  it "scores a spare" do
+    game.roll(1)
+    game.roll(9)
+    roll_many(1, 18)
+
+    game.score.must_equal 29
+  end
+
+  def roll_many(pins, times)
     times.times do
       game.roll(pins)
     end
