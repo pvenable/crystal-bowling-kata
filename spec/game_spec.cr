@@ -25,6 +25,13 @@ describe Game do
     game.score.must_equal 29
   end
 
+  it "scores a strike" do
+    game.roll(10)
+    roll_many(1, 18)
+
+    game.score.must_equal 30
+  end
+
   def roll_many(pins, times)
     times.times do
       game.roll(pins)
