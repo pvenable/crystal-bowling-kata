@@ -32,6 +32,12 @@ describe Game do
     game.score.must_equal 30
   end
 
+  it "scores the perfect game" do
+    roll_many(10, 12)
+
+    game.score.must_equal 300
+  end
+
   def roll_many(pins, times)
     times.times do
       game.roll(pins)
