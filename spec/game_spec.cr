@@ -1,24 +1,25 @@
-require "spec"
+require "minitest/autorun"
+
 require "../src/game"
 
 describe Game do
+  let(:game) { Game.new }
+
   it "scores a gutter game" do
-    game = Game.new
+    roll_many(game, 0, 20)
 
-    20.times do
-      game.roll(0)
-    end
-
-    game.score.should eq 0
+    game.score.must_equal 0
   end
 
   it "scores open frames" do
-    game = Game.new
+    roll_many(game, 1, 20)
 
-    20.times do
-      game.roll(1)
+    game.score.must_equal 20
+  end
+
+  def roll_many(game, pins, times)
+    times.times do
+      game.roll(pins)
     end
-
-    game.score.should eq 20
   end
 end
