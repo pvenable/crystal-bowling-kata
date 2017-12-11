@@ -1,10 +1,12 @@
 class Game
+  private getter :rolls
+
   def initialize
     @rolls = [] of Int32
   end
 
   def roll(pins)
-    @rolls.push(pins)
+    rolls.push(pins)
   end
 
   def score
@@ -19,7 +21,7 @@ class Game
         total += 10 + spare_bonus(roll_index)
         roll_index += 2
       else
-        total += @rolls[roll_index] + @rolls[roll_index + 1]
+        total += rolls[roll_index] + rolls[roll_index + 1]
         roll_index += 2
       end
     end
@@ -28,18 +30,18 @@ class Game
   end
 
   private def spare?(roll_index)
-    @rolls[roll_index] + @rolls[roll_index + 1] == 10
+    rolls[roll_index] + rolls[roll_index + 1] == 10
   end
 
   private def spare_bonus(roll_index)
-    @rolls[roll_index + 2]
+    rolls[roll_index + 2]
   end
 
   private def strike?(roll_index)
-    @rolls[roll_index] == 10
+    rolls[roll_index] == 10
   end
 
   private def strike_bonus(roll_index)
-    10 + @rolls[roll_index + 1] + @rolls[roll_index + 2]
+    10 + rolls[roll_index + 1] + rolls[roll_index + 2]
   end
 end
